@@ -1,0 +1,9 @@
+.menu-item {
+    display: flex;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.menu-item p {
+    margin: 0px 5px;
+}
