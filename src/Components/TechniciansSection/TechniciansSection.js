@@ -6,10 +6,6 @@ import TransitionsModal from '../TransitionModal/TransitionModal.js'
 import LabeledInput from '../LabeledInput/LabeledInput';
 import plus from '../../Assets/plus.svg';
 
-
-
-const form = [["Name", "Email"], ["Boiler Knowledge"]];
-
 export default class TechniciansSection extends Component {
 
     constructor(props) {
@@ -34,14 +30,14 @@ export default class TechniciansSection extends Component {
             ...this.state,
             shouldOpenModal: true,
         });
-      };
+    };
     
     handleClose = () => {
         this.setState({
             ...this.state,
             shouldOpenModal: false,
         });
-      };
+    };
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -81,6 +77,19 @@ export default class TechniciansSection extends Component {
         });
     }
 
+    handleUpdate = (newItem) => {
+        const techniciansCpy = [...this.state.technicians];
+        const updatedArray = techniciansCpy.map(value => {
+            if (value.id === newItem.id) {
+                return newItem;
+            }
+            return value;
+        });
+        this.setState({
+            technicians: updatedArray,
+        });
+    }
+
     render = () => {
         return (
             <div className="editing-container">
@@ -93,7 +102,13 @@ export default class TechniciansSection extends Component {
                             <th>Actions</th>
                         </tr>
                         {
-                            this.state.technicians.map(value => <ListItem key={value.id} removeFromListCallback={this.removeFromList} technician={value}/>)
+                            this.state.technicians.map(value =>
+                                <ListItem 
+                                    key={value.id}
+                                    removeFromListCallback={this.removeFromList}
+                                    technician={value}
+                                    handleUpdate={this.handleUpdate}
+                                />)
                         }
                     </table>
                 </div>
