@@ -11,3 +11,7 @@ body, html {
   display: flex;
   height: 100%;
 }
+
+.content {
+  width: 85%;
+}
